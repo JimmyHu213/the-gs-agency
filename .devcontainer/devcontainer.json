@@ -1,0 +1,31 @@
+{
+	"name": "the-gs-agency",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:22",
+	"features": {
+		"ghcr.io/devcontainers/features/github-cli:1": {}
+	},
+	"postCreateCommand": "npm ci",
+	"forwardPorts": [3000, 8787],
+	"portsAttributes": {
+		"3000": { "label": "next dev", "onAutoForward": "openPreview" },
+		"8787": { "label": "wrangler preview", "onAutoForward": "notify" }
+	},
+	"secrets": {
+		"CLOUDFLARE_API_TOKEN": {
+			"description": "Cloudflare API token (Edit Cloudflare Workers template). Needed for npm run deploy / wrangler, since wrangler login cannot complete its browser callback inside a Codespace.",
+			"documentationUrl": "https://dash.cloudflare.com/profile/api-tokens"
+		},
+		"CLOUDFLARE_ACCOUNT_ID": {
+			"description": "Cloudflare account ID that owns the the-gs-agency Worker."
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"bradlc.vscode-tailwindcss",
+				"github.vscode-github-actions"
+			]
+		}
+	}
+}

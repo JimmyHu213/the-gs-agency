@@ -1,26 +1,230 @@
 @import "tailwindcss";
 
+/*
+ * Two themes, one set of tokens. Light (paper) is the default; dark (ink)
+ * applies when the device prefers it, unless the visitor picked a theme with
+ * the header toggle, which sets data-theme on <html>.
+ *
+ * Gold fails WCAG AA as text on paper, so in light mode --label and --accent
+ * resolve to ink/grey and gold appears only as --rule (lines, the diamond).
+ */
 :root {
-	--background: #ffffff;
-	--foreground: #171717;
+	--bg: #fbf8ef;
+	--fg: #0e0e10;
+	--muted: #4a4740;
+	--faint: #5c584f;
+	--card: #f3eedf;
+	--line: rgb(14 14 16 / 0.14);
+	--label: #4a4740;
+	--accent: #0e0e10;
+	--rule: #b08d2e;
+	--grid: rgb(14 14 16 / 0.12);
+	--panel: #0e0e10;
+	--panel-line: transparent;
+	color-scheme: light;
 }
 
-@theme inline {
-	--color-background: var(--background);
-	--color-foreground: var(--foreground);
-	--font-sans: var(--font-geist-sans);
-	--font-mono: var(--font-geist-mono);
-}
-
+/* Dark tokens appear twice: once for the device preference, once for the toggle. */
 @media (prefers-color-scheme: dark) {
-	:root {
-		--background: #0a0a0a;
-		--foreground: #ededed;
+	:root:not([data-theme="light"]) {
+		--bg: #0e0e10;
+		--fg: #fbf8ef;
+		--muted: #d4cfc2;
+		--faint: #9a958a;
+		--card: #111111;
+		--line: rgb(251 248 239 / 0.16);
+		--label: #c8a951;
+		--accent: #c8a951;
+		--rule: #c8a951;
+		--grid: rgb(251 248 239 / 0.1);
+		--panel: #111111;
+		--panel-line: rgb(251 248 239 / 0.16);
+		color-scheme: dark;
 	}
 }
 
+:root[data-theme="dark"] {
+	--bg: #0e0e10;
+	--fg: #fbf8ef;
+	--muted: #d4cfc2;
+	--faint: #9a958a;
+	--card: #111111;
+	--line: rgb(251 248 239 / 0.16);
+	--label: #c8a951;
+	--accent: #c8a951;
+	--rule: #c8a951;
+	--grid: rgb(251 248 239 / 0.1);
+	--panel: #111111;
+	--panel-line: rgb(251 248 239 / 0.16);
+	color-scheme: dark;
+}
+
+@theme inline {
+	--color-bg: var(--bg);
+	--color-fg: var(--fg);
+	--color-muted: var(--muted);
+	--color-faint: var(--faint);
+	--color-card: var(--card);
+	--color-line: var(--line);
+	--color-label: var(--label);
+	--color-accent: var(--accent);
+	--color-rule: var(--rule);
+	--color-panel: var(--panel);
+	--color-panel-line: var(--panel-line);
+	--color-ink: #0e0e10;
+	--color-paper: #fbf8ef;
+	--color-gold: #c8a951;
+	--color-gold-deep: #b08d2e;
+	--font-sans: var(--font-inter), system-ui, sans-serif;
+	--font-display: var(--font-playfair), Georgia, serif;
+}
+
 body {
-	background: var(--background);
-	color: var(--foreground);
-	font-family: Arial, Helvetica, sans-serif;
+	background: var(--bg);
+	color: var(--fg);
+	font-family: var(--font-sans);
+	font-size: 17px;
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	body,
+	body * {
+		transition:
+			background-color 0.25s ease,
+			color 0.25s ease,
+			border-color 0.25s ease;
+	}
+}
+
+/* Hero background: a faint grid that fades toward the edges. */
+.hero-grid {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background-image:
+		linear-gradient(to right, var(--grid) 1px, transparent 1px),
+		linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+	background-size: 56px 56px;
+	background-position: center top;
+	mask-image: radial-gradient(ellipse 85% 80% at 50% 40%, #000 35%, transparent 88%);
+}
+
+/*
+ * The GS monogram traced in gold along the grid lines. The SVG's user units
+ * are grid cells (56px), so stroke widths are in cells: 2px = 2/56.
+ */
+.hero-trace {
+	position: absolute;
+	left: 50%;
+	top: 0;
+	width: calc(21 * 56px);
+	height: calc(14 * 56px);
+	transform: translateX(-50%);
+}
+
+.hero-trace path {
+	fill: none;
+	stroke: var(--rule);
+	stroke-linecap: square;
+	stroke-dasharray: 1 1;
+	stroke-dashoffset: 1;
+}
+
+.hero-trace .glow {
+	stroke-width: 0.125;
+	stroke-opacity: 0.1;
+}
+
+.hero-trace .line {
+	stroke-width: 0.0357;
+	stroke-opacity: 0.5;
+}
+
+/* Full shorthands: a name-less `animation` shorthand is minified to `none`. */
+.hero-trace .g {
+	animation: trace-g 14s linear infinite;
+}
+
+.hero-trace .s {
+	animation: trace-s 14s linear infinite;
+}
+
+@keyframes trace-g {
+	0% {
+		stroke-dashoffset: 1;
+		opacity: 1;
+	}
+	20%,
+	68% {
+		stroke-dashoffset: 0;
+		opacity: 1;
+	}
+	84% {
+		stroke-dashoffset: 0;
+		opacity: 0;
+	}
+	100% {
+		stroke-dashoffset: 1;
+		opacity: 0;
+	}
+}
+
+@keyframes trace-s {
+	0%,
+	20% {
+		stroke-dashoffset: 1;
+		opacity: 1;
+	}
+	40%,
+	68% {
+		stroke-dashoffset: 0;
+		opacity: 1;
+	}
+	84% {
+		stroke-dashoffset: 0;
+		opacity: 0;
+	}
+	100% {
+		stroke-dashoffset: 1;
+		opacity: 0;
+	}
+}
+
+/* Phones: a finer grid so the whole monogram fits (letters span 15 cells). */
+@media (max-width: 640px) {
+	.hero-grid {
+		background-size: 24px 24px;
+	}
+
+	.hero-trace {
+		/* Three cells down, so the letters sit behind the headline, not the header. */
+		top: calc(3 * 24px);
+		width: calc(21 * 24px);
+		height: calc(14 * 24px);
+	}
+
+	.hero-trace .glow {
+		stroke-width: 0.29;
+	}
+
+	.hero-trace .line {
+		stroke-width: 0.083;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hero-trace path {
+		animation: none;
+		stroke-dashoffset: 0;
+		opacity: 0.45;
+	}
 }

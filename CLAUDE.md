@@ -66,6 +66,11 @@ to screen while keeping ownership. Two audiences on one site: storytellers and i
   - `npm run cf-typegen` — regenerate `cloudflare-env.d.ts` after changing bindings
 - **Deploys:** every push to `main` deploys via `.github/workflows/deploy.yml`. Work on `dev`
   or feature branches and PR into `main`.
+- **Placeholder guard:** `next build` fails while any `placeholder: true` content remains
+  (`src/content/placeholders.ts`). Pre-launch, build with `ALLOW_PLACEHOLDER_CONTENT=1`.
+- **Theming:** light/dark tokens are CSS variables in `src/app/globals.css`, exposed to Tailwind
+  as `bg`, `fg`, `muted`, `faint`, `card`, `line`, `label`, `accent`, `rule`. Use those, not hexes.
+  Spec §15 records where the build departs from the original spec.
 
 **Hard rules**
 - **Confidentiality:** no pitch/treatment material — working title, the individual's name, the
@@ -97,9 +102,11 @@ to screen while keeping ownership. Two audiences on one site: storytellers and i
 
 ## 9. File Organization
 
-- `src/app/` — routes (App Router). Import from `src` via the `@/*` alias.
-- `src/content/` — typed copy modules (`site.ts`, `home.ts`, `guide.ts`, …) and
-  `journal/*.mdx`. Copy lives here, not inside components.
+- `src/app/` — routes (App Router). Home is `app/page.tsx` (its header sits inside the hero);
+  every other page is under `app/(pages)/`, whose layout adds the header. Import via `@/*`.
+- `src/content/` — typed copy modules (`site.ts`, `guide.ts`, `journal.ts`, `shells.ts`).
+  Copy lives here, not inside components.
+- `src/components/` — shared UI (`ui.tsx` primitives, header, footer, theme toggle, hero backdrop).
 - `public/` — static assets; `public/_headers` sets response headers on Workers.
 - `docs/` — specs, plans and one-time setup notes (e.g. Cloudflare Access).
 - Co-locate related files.

@@ -391,3 +391,20 @@ newsletter; public slate with real projects; case studies; multi-author journal;
 4. Lawyer review of the privacy notice and any consent wording.
 5. Decision on whether any slate entry may be published in de-identified form.
 6. Confirmation of the domain to deploy against (`geoffshannonagency.com`).
+7. Length of the cooling-off period, and the publication dates of the guide and the two journal
+   articles (currently set to 2026-09-05, the source documents' date).
+
+---
+
+## 15. Amendments (2026-10-18, Phase 1 build)
+
+Decided after the home-page design exploration (Claude Design canvas "TGSA Home Directions").
+
+| # | Change | Why |
+|---|---|---|
+| AM-1 | **DEC-7 replaced.** Instead of fixed ink/paper surfaces per route, every page has a light (paper) and dark (ink) theme. The site follows the device's `prefers-color-scheme`; a sun/moon toggle in the header overrides it and is remembered (`localStorage`). | Cream reads as safer to a wary storyteller; producers who prefer the cinematic black still get it. |
+| AM-2 | Gold rules from §7 apply per theme: in light mode gold is decorative only (rules, diamond, borders) and labels, numerals and link underlines resolve to ink/grey; in dark mode gold may be text. Tokens live in `globals.css`. | Keeps WCAG AA in both themes. |
+| AM-3 | Home direction **A · Two Doors**: centred hero, the logo's gold rule and diamond, two equal path cards, third-way comparison, four safeguards, one ink-and-gold guide panel that stays dark in both themes. | Chosen from three directions. |
+| AM-4 | Home hero backdrop: a faint grid fading toward the edges, with the GS monogram traced in gold along the grid lines on a 14 s loop. Static and faint under `prefers-reduced-motion`. Finer grid on phones. | Brand motif without imagery. |
+| AM-5 | Journal articles are typed TypeScript modules (`src/content/journal.ts`), not MDX. | Two plain-prose articles do not justify an MDX pipeline; types still fail the build on a missing field. |
+| AM-6 | The placeholder guard runs in `next.config.ts` at build phase and also covers missing contact details. The deploy workflow sets `ALLOW_PLACEHOLDER_CONTENT=1` until launch. | Pre-launch deploys to workers.dev must keep working. |

@@ -23,5 +23,8 @@ jobs:
       - run: npm ci
       - run: npm run deploy
         env:
+          # Pre-launch only: the site still carries placeholder contact details,
+          # bio and slate. Remove this before pointing the real domain at it.
+          ALLOW_PLACEHOLDER_CONTENT: "1"
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

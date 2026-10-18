@@ -8,6 +8,6 @@ export function findPlaceholders(): string[] {
 		if (isPending(value)) found.push(`site.contact.${key}`);
 	}
 	slate.forEach((entry, i) => entry.placeholder && found.push(`slate[${i}]`));
-	if (about.placeholder) found.push("about");
+	if (isPending(about.portrait)) found.push("about.portrait");
 	return found;
 }

@@ -19,7 +19,7 @@
 	--accent: #0e0e10;
 	--rule: #b08d2e;
 	--pulse: #8f7020;
-	--grid: rgb(14 14 16 / 0.09);
+	--grid: rgb(14 14 16 / 0.065);
 	--panel: #0e0e10;
 	--panel-line: transparent;
 	color-scheme: light;
@@ -38,7 +38,7 @@
 		--accent: #c8a951;
 		--rule: #c8a951;
 		--pulse: #f2dc8f;
-		--grid: rgb(251 248 239 / 0.08);
+		--grid: rgb(251 248 239 / 0.06);
 		--panel: #111111;
 		--panel-line: rgb(251 248 239 / 0.16);
 		color-scheme: dark;
@@ -56,7 +56,7 @@
 	--accent: #c8a951;
 	--rule: #c8a951;
 	--pulse: #f2dc8f;
-	--grid: rgb(251 248 239 / 0.08);
+	--grid: rgb(251 248 239 / 0.06);
 	--panel: #111111;
 	--panel-line: rgb(251 248 239 / 0.16);
 	color-scheme: dark;
@@ -156,7 +156,7 @@ body {
 	fill: none;
 	stroke: var(--rule);
 	stroke-width: 0.027;
-	stroke-opacity: 0.4;
+	stroke-opacity: 0.28;
 	stroke-linecap: square;
 }
 
@@ -182,11 +182,12 @@ body {
 
 .hero-circuit .core {
 	stroke-width: 0.054;
+	stroke-opacity: 0.7;
 }
 
 .hero-circuit .halo {
 	stroke-width: 0.18;
-	stroke-opacity: 0.22;
+	stroke-opacity: 0.12;
 }
 
 @keyframes circuit-flow {
@@ -232,6 +233,6 @@ body {
 	}
 
 	.hero-circuit .trace {
-		stroke-opacity: 0.6;
+		stroke-opacity: 0.45;
 	}
 }

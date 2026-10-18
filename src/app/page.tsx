@@ -54,7 +54,7 @@ export default function Home() {
 				<div className="relative">
 					<SiteHeader />
 					<main id="main">
-						<section className="px-6 pt-16 pb-10 text-center sm:pt-20">
+						<section className="px-6 pt-16 pb-10 text-center sm:pt-20 sm:pb-52">
 							<Kicker className="mb-6">{site.tagline}</Kicker>
 							<h1 className="mx-auto max-w-[15ch] font-display text-[clamp(44px,7vw,92px)] leading-[1.05] font-medium tracking-[-0.01em]">
 								Your story, your rights.

@@ -106,7 +106,7 @@ to screen while keeping ownership. Two audiences on one site: storytellers and i
   every other page is under `app/(pages)/`, whose layout adds the header. Import via `@/*`.
 - `src/content/` — typed copy modules (`site.ts`, `guide.ts`, `journal.ts`, `shells.ts`).
   Copy lives here, not inside components.
-- `src/components/` — shared UI (`ui.tsx` primitives, header, footer, theme toggle, hero backdrop).
+- `src/components/` — shared UI (`ui.tsx` primitives, header, footer, theme toggle, hero circuit).
 - `public/` — static assets; `public/_headers` sets response headers on Workers.
 - `docs/` — specs, plans and one-time setup notes (e.g. Cloudflare Access).
 - Co-locate related files.

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { HeroBackdrop } from "@/components/HeroBackdrop";
+import { HeroCircuit } from "@/components/HeroCircuit";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Container, Divider, Kicker } from "@/components/ui";
 import { safeguards, site } from "@/content/site";
@@ -50,11 +50,11 @@ export default function Home() {
 	return (
 		<>
 			<div className="relative overflow-hidden">
-				<HeroBackdrop />
+				<HeroCircuit />
 				<div className="relative">
 					<SiteHeader />
 					<main id="main">
-						<section className="px-6 pt-16 pb-10 text-center sm:pt-20">
+						<section className="px-6 pt-16 pb-10 text-center sm:pt-20 sm:pb-52">
 							<Kicker className="mb-6">{site.tagline}</Kicker>
 							<h1 className="mx-auto max-w-[15ch] font-display text-[clamp(44px,7vw,92px)] leading-[1.05] font-medium tracking-[-0.01em]">
 								Your story, your rights.

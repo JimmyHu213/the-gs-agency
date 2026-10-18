@@ -35,6 +35,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 				<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 			</head>
 			<body className={`${inter.variable} ${playfair.variable}`}>
+				<div className="site-grid" aria-hidden="true" />
 				<a
 					href="#main"
 					className="sr-only z-50 bg-fg px-4 py-3 text-bg focus:not-sr-only focus:absolute focus:top-3 focus:left-3"

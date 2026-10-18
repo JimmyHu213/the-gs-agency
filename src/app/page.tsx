@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { HeroBackdrop } from "@/components/HeroBackdrop";
+import { HeroCircuit } from "@/components/HeroCircuit";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Container, Divider, Kicker } from "@/components/ui";
 import { safeguards, site } from "@/content/site";
@@ -50,7 +50,7 @@ export default function Home() {
 	return (
 		<>
 			<div className="relative overflow-hidden">
-				<HeroBackdrop />
+				<HeroCircuit />
 				<div className="relative">
 					<SiteHeader />
 					<main id="main">

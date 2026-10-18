@@ -13,7 +13,7 @@ function Wordmark() {
 }
 
 const enquiryClass =
-	"inline-flex min-h-11 items-center border border-accent px-5 font-medium text-accent no-underline hover:bg-accent hover:text-bg";
+	"inline-flex min-h-11 items-center whitespace-nowrap border border-accent px-5 font-medium text-accent no-underline hover:bg-accent hover:text-bg";
 
 export function SiteHeader() {
 	return (
@@ -21,10 +21,10 @@ export function SiteHeader() {
 			<Wordmark />
 
 			{/* Wide screens: inline navigation. */}
-			<div className="hidden items-center gap-7 lg:flex">
+			<div className="hidden items-center gap-7 xl:flex">
 				<nav aria-label="Main" className="flex items-center gap-7 text-[15px]">
 					{site.nav.map((item) => (
-						<Link key={item.href} href={item.href} className="text-fg no-underline hover:text-muted">
+						<Link key={item.href} href={item.href} className="whitespace-nowrap text-fg no-underline hover:text-muted">
 							{item.label}
 						</Link>
 					))}
@@ -36,7 +36,7 @@ export function SiteHeader() {
 			</div>
 
 			{/* Narrow screens: the same links behind a disclosure, no JavaScript needed. */}
-			<div className="flex items-center gap-3 lg:hidden">
+			<div className="flex items-center gap-3 xl:hidden">
 				<ThemeToggle />
 				<details className="group">
 					<summary className="flex h-11 cursor-pointer list-none items-center border border-line px-4 text-[15px] [&::-webkit-details-marker]:hidden">
